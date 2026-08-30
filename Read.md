@@ -7,15 +7,9 @@ treeView-beta
                                com/
                                     demo/
                                           cc/
-                                              rest/
-                                                    controller/
-                                                     dto/
-                                              service/
-                                              dao/
-                                              exception/
                                               
                                               
-                          test/
+                         test/
                 .gitignore
                 pom.xml
                 README.md
