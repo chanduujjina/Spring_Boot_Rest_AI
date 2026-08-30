@@ -42,6 +42,8 @@ erDiagram
         float price
     }
 ```
+
+### sequence diagram
 ```mermaid
 sequenceDiagram
     autonumber
