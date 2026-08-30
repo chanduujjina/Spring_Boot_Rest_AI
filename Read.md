@@ -41,4 +41,5 @@ erDiagram
         int quantity
         float price
     }
-    ```
+```
+
