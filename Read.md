@@ -4,9 +4,7 @@ treeView-beta
                      src/
                          main/
                               java/
-                                   controller/
-                               
-                            test/
+                              test/
                 .gitignore
                 pom.xml
                 README.md
