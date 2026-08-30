@@ -5,9 +5,6 @@ treeView-beta
                          main/
                               java/
                                    controller/
-                                   dto/
-                                   mapper/
-                                   service/
                                
                             test/
                 .gitignore
