@@ -17,8 +17,8 @@ treeView-beta
 ```
 ## 
 
-```mermaid
-erDiagram
+
+```erDiagram
     CUSTOMER ||--o{ ORDER : places
     ORDER ||--|{ ORDER_ITEM : contains
     PRODUCT ||--o{ ORDER_ITEM : includes
