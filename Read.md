@@ -4,7 +4,12 @@ treeView-beta
                 src/
                     main/
                           java/
-                               controller/
+                               com/
+                                   controller/
+                                   dto/
+                                   mapper/
+                                   service/
+                               
                           test/
                 .gitignore
                 pom.xml
