@@ -1,1 +1,13 @@
-
+```mermaid
+treeView-beta
+            my-project/
+                src/
+                    components/
+                        Button.tsx
+                        Header.tsx
+                    App.tsx
+                    index.js
+                .gitignore
+                package.json
+                README.md
+```
