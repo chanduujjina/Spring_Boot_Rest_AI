@@ -4,7 +4,6 @@ treeView-beta
                      src/
                          main/
                               java/
-                                  com/
                                       controller/
                                       dto/
                                       mapper/
