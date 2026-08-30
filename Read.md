@@ -5,7 +5,10 @@ treeView-beta
                          main/
                               java/
                                    com/
+                                       cc/
                               test/
+                                   com/
+                                       cc/
                 .gitignore
                 pom.xml
                 README.md
