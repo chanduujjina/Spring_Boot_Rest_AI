@@ -54,7 +54,7 @@ sequenceDiagram
         participant CosmosReader
         participant OdsReader
         participant SynapseReader
-     box
+    end  %% <-- Changed 'box' to 'end' here
     participant GroupingService
     participant NotificationPublisher
 
@@ -85,4 +85,5 @@ sequenceDiagram
     deactivate DataMergeService
     deactivate BatchJob
 ```
+
 
