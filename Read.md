@@ -42,4 +42,38 @@ erDiagram
         float price
     }
 ```
+```mermaid
+zenuml
+    title Report Notification Pipeline
+    @Actor Scheduler #FFEBE6
+    @Boundary BatchJob #0747A6
+    @EC2 <<Tasklet>> DataMergeService #E3FCEF
+    group DataSources {
+      @Database <<Cosmos>> CosmosReader
+      @Database <<AzureSQL>> OdsReader
+      @Database <<Synapse>> SynapseReader
+    }
+    @Service GroupingService
+    @Queue <<ServiceBus>> NotificationPublisher
 
+    @Starter(Scheduler)
+    // triggers the batch tasklet
+    BatchJob.execute() {
+      DataMergeService.process() {
+        par {
+          CosmosReader.readByDateCriteria()
+          OdsReader.readByReportId()
+          SynapseReader.readByReportId()
+        }
+        merged = mergeByKeys(reportId, policyId)
+        if(merged != null) {
+          grouped = GroupingService.group(merged)
+          if(user.preference == "SMS") {
+            NotificationPublisher.publish(smsTopic, grouped)
+          } else {
+            NotificationPublisher.publish(emailTopic, grouped)
+          }
+        }
+      }
+    }
+```
