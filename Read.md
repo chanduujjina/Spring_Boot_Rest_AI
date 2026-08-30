@@ -43,37 +43,44 @@ erDiagram
     }
 ```
 ```mermaid
-zenuml
-    title Report Notification Pipeline
-    @Actor Scheduler #FFEBE6
-    @Boundary BatchJob #0747A6
-    @EC2 <<Tasklet>> DataMergeService #E3FCEF
-    group DataSources {
-      @Database <<Cosmos>> CosmosReader
-      @Database <<AzureSQL>> OdsReader
-      @Database <<Synapse>> SynapseReader
-    }
-    @Service GroupingService
-    @Queue <<ServiceBus>> NotificationPublisher
+sequenceDiagram
+    autonumber
+    actor Scheduler
+    participant BatchJob
+    participant DataMergeService
+    box DataSources
+        participant CosmosReader
+        participant OdsReader
+        participant SynapseReader
+     box
+    participant GroupingService
+    participant NotificationPublisher
 
-    @Starter(Scheduler)
-    // triggers the batch tasklet
-    BatchJob.execute() {
-      DataMergeService.process() {
-        par {
-          CosmosReader.readByDateCriteria()
-          OdsReader.readByReportId()
-          SynapseReader.readByReportId()
-        }
-        merged = mergeByKeys(reportId, policyId)
-        if(merged != null) {
-          grouped = GroupingService.group(merged)
-          if(user.preference == "SMS") {
-            NotificationPublisher.publish(smsTopic, grouped)
-          } else {
-            NotificationPublisher.publish(emailTopic, grouped)
-          }
-        }
-      }
-    }
+    Scheduler->>BatchJob: execute()
+    activate BatchJob
+    BatchJob->>DataMergeService: process()
+    activate DataMergeService
+    
+    par Read From Data Sources
+        DataMergeService->>CosmosReader: readByDateCriteria()
+        DataMergeService->>OdsReader: readByReportId()
+        DataMergeService->>SynapseReader: readByReportId()
+    end
+    
+    Note over DataMergeService: merged = mergeByKeys(reportId, policyId)
+    
+    alt merged != null
+        DataMergeService->>GroupingService: group(merged)
+        GroupingService-->>DataMergeService: grouped
+        
+        alt user.preference == "SMS"
+            DataMergeService->>NotificationPublisher: publish(smsTopic, grouped)
+        else user.preference == "Email"
+            DataMergeService->>NotificationPublisher: publish(emailTopic, grouped)
+        end
+    end
+    
+    deactivate DataMergeService
+    deactivate BatchJob
 ```
+
