@@ -4,10 +4,10 @@ treeView-beta
                      src/
                          main/
                               java/
-                                      controller/
-                                      dto/
-                                      mapper/
-                                     service/
+                                   controller/
+                                   dto/
+                                   mapper/
+                                   service/
                                
                             test/
                 .gitignore
