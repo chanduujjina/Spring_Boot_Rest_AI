@@ -1,13 +1,11 @@
 ```mermaid
 treeView-beta
-            my-project/
+            restDemo/
                 src/
-                    components/
-                        Button.tsx
-                        Header.tsx
-                    App.tsx
-                    index.js
+                    main/
+                          java/
+                          test/
                 .gitignore
-                package.json
+                pom.xml
                 README.md
 ```
