@@ -1,13 +1,16 @@
 ```mermaid
 treeView-beta
             restDemo/
-                     src/main/java/com/
-                                   controller/
-                                   dto/
-                                   mapper/
-                                   service/
+                     src/
+                         main/
+                              java/
+                                  com/
+                                      controller/
+                                      dto/
+                                      mapper/
+                                     service/
                                
-                  src/main/test/
+                            test/
                 .gitignore
                 pom.xml
                 README.md
